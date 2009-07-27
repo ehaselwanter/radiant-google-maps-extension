@@ -3,6 +3,11 @@ class GoogleMapsExtension < Radiant::Extension
   description "Allows you to embed google maps in your site"
   url "http://github.com/rurounijones/radiant-google-maps-extension/"
   
+  extension_config do |config|
+    config.gem 'GeoRuby', :lib => 'geo_ruby'
+    config.extension 'location'
+  end
+  
   define_routes do |map|
     map.namespace :admin, :member => { :remove => :get } do |admin|
       admin.resources :google_maps do |google_map|

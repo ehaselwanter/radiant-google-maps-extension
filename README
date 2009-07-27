@@ -22,17 +22,12 @@ Radiant 0.7.1 - Version 1.3.1 of this is extension is the last Radiant 0.7.1 com
 
 ### Installation
 
-After downloading the extension  you may have to rename the directory to "google_maps" then run the following commands
+After downloading the extension  you may have to rename the directory to "google_maps" then run the following command
 
-  rake radiant:extensions:google_maps:api <- THIS MUST BE RUN FIRST (Or manually copy and rename the API key file)
-  rake production radiant:extensions:google_maps:migrate
-  rake production radiant:extensions:google_maps:update
+  rake radiant:extensions:google_maps:install
 
 After this you will need to edit the config/gmaps_api_key.yml file with your Google Map API Key (Sample file has the key needed for localhost).
 The API key file must have entries for dev, test and production environments even if they are not being used.
-
-
-Note for rails 2.2 when the time comes - http://railsforum.com/viewtopic.php?id=24839
 
 ### Usage
 

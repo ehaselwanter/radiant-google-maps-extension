@@ -1,6 +1,9 @@
 namespace :radiant do
   namespace :extensions do
     namespace :google_maps do
+      
+      desc "Install the Google Maps extension"
+      task :install => [:environment, :api, :update, :migrate]
 
       desc "Copies sample API key file of the Google Maps extension to the instance config/ directory."
       task :api do

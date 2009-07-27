@@ -4,7 +4,8 @@ class GoogleMap < ActiveRecord::Base
   belongs_to :created_by, :class_name => 'User'
   belongs_to :updated_by, :class_name => 'User'
 
-  order_by 'name'
+  # order_by 'name'
+  default_scope :order => 'name'
 
   before_validation :create_point
   attr_accessor :latitude, :longitude
