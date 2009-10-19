@@ -1,0 +1,63 @@
+- content_for 'page_css' do
+  :sass
+    #gmap
+      width: 100%
+      height: 400px
+
+=GMap.header(:host => request.host)
+%script{ 'type' => "text/javascript", :src   => "/javascripts/admin/admin_map.js" }
+- form_for [:admin, @google_map] do |f|
+  .form-area
+    %p.title
+      %label{:for=>"google_map_name"}
+        Name
+      = f.text_field :name, :class => 'textbox', :maxlength => 100
+    %div.row
+      %table.fieldset
+        %tr
+          %th.label
+            %label{:for => "google_map_description"} Description
+          %td.field
+            = f.text_field :description, :class => 'textbox', :maxlength => 100
+        %tr
+          %th.label
+            %label{:for => "google_map_latitude"} Latitude
+          %td.field
+            - if @google_map.center.nil?
+              = f.text_field :latitude, :class => 'textbox', :maxlength => 100
+            - else
+              = f.text_field :latitude, :class => 'textbox', :maxlength => 100, :value => @google_map.center.y
+        %tr
+          %th.label
+            %label{:for => "google_map_longitude"} Longitude
+          %td.field
+            - if @google_map.center.nil?
+              = f.text_field :longitude, :class => 'textbox', :maxlength => 100
+            - else
+              = f.text_field :longitude, :class => 'textbox', :maxlength => 100, :value => @google_map.center.x
+        %tr
+          %th.label
+            %label{:for => "google_map_zoom"} Zoom level
+          %td.field
+            = f.text_field :zoom, :class => 'textbox', :maxlength => 100
+        %tr
+          %th.label
+            %label
+              Manual Placement
+          %td.field
+            %div#gmap
+            = GoogleMap.generate_admin_google_map_html(@google_map)
+    %div.row
+      %p
+        %label{:for => "google_map_style"} Map Style
+        = f.select :style, GoogleMap::VALID_MAP_TYPE_NAMES
+    = updated_stamp @google_map
+
+  %p.buttons
+    = save_model_button(@google_map)
+    = save_model_and_continue_editing_button(@google_map)
+    or
+    - if @google_map.id.nil?
+      = link_to 'Cancel', admin_google_maps_url
+    - else
+      = link_to 'Cancel', admin_google_map_url(@google_map)
