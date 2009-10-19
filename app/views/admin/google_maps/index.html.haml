@@ -1,0 +1,19 @@
+%h1 Google Maps
+%p Use google maps to add spatially data driven maps to your website.
+
+%table.index#site-map
+  %thead
+    %tr
+      %th Name
+      %th Description
+      %th.modify Modify
+  %tbody
+  - @google_maps.each do |google_map|
+    %tr{:class => "node level-1"}
+      %td.snippet
+        = image('map', :alt => "map-icon")
+        = link_to(google_map.name, admin_google_map_url(google_map))
+      %td= google_map.description
+      %td.remove= link_to(image_tag('admin/remove.png'), remove_admin_google_map_url(google_map))
+
+%p= link_to( image("new-map", :alt => "New map"), new_admin_google_map_url)
