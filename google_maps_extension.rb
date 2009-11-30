@@ -5,7 +5,7 @@ class GoogleMapsExtension < Radiant::Extension
   
   extension_config do |config|
     config.gem 'GeoRuby', :lib => 'geo_ruby'
-    config.extension 'location'
+    #config.extension 'location'
   end
   
   define_routes do |map|
